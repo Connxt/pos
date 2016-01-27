@@ -27,7 +27,7 @@
 <!-- sweet alert plugin -->
 <script src="<?php echo base_url(); ?>assets/js/sweet_alert/sweet-alert.min.js"></script>
 
-<!-- choosen -->
+<!-- chosen -->
 <script src="<?php echo base_url(); ?>assets/js/choosen/chosen.jquery.min.js"></script>
 
 <!-- Nprogress -->
@@ -55,4 +55,5 @@
 	const BASE_URL = "<?php echo base_url(); ?>";
 	const CURRENT_CONTROLLER = "<?php echo $current_page; ?>";
 	const USER_ID = <?php echo ($current_page != 'login') ? $user_id : 0; ?>;
+	const WITH_CUSTOMERS = <?php echo isset($with_customers) ? (($with_customers == 1) ? 'true' : 'false') : 'false'; ?>;
 </script>

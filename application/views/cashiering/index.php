@@ -15,7 +15,7 @@
 		<div class="content-wrapper">
 			<section class="content">
 				<div class="row">
-					<div class="col-lg-8">
+					<div class="col-lg-<?php echo ($with_customers) ? '8' : '12'; ?>">
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="row">
@@ -59,7 +59,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4" style="padding-left: 0px;">
+					<div class="col-lg-4" style="padding-left: 0px; <?php echo ($with_customers) ? '' : 'display: none;'; ?>">
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div class="row">
@@ -139,9 +139,11 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<button id="btn_new_cash_transaction" type="button" class="btn btn-default btn-new-transaction btn-cash" style="width: 27%">Cash</button>
-											<button id="btn_new_credit_card_transaction" type="button" class="btn btn-default btn-new-transaction btn-credit-card" style="width: 40%">Credit Card</button>
+											<button id="btn_new_cash_transaction" type="button" class="btn btn-default btn-new-transaction btn-cash" style="width: <?php echo ($with_customers) ? '27%' : '49%'; ?>;">Cash</button>
+											<button id="btn_new_credit_card_transaction" type="button" class="btn btn-default btn-new-transaction btn-credit-card" style="width: <?php echo ($with_customers) ? '40%' : '49%'; ?>;">Credit Card</button>
+											<?php if($with_customers) { ?>
 											<button id="btn_new_credit_transaction" type="button" class="btn btn-default btn-new-transaction btn-credit" style="width: 30%">Credit</button>
+											<?php } ?>
 										</div>
 										<div class="form-group" style="margin-bottom: 0px;">
 											<button id="btn_show_help" type="button" class="btn btn-default btn-block"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;Help</button>
@@ -467,6 +469,7 @@
 							<td>&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;</td>
 							<td>Focus to item/service list</td>
 						</tr>
+						<?php if($with_customers) { ?>
 						<tr>
 							<td><kbd>F7</kbd></td>
 							<td>&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;</td>
@@ -477,6 +480,7 @@
 							<td>&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;</td>
 							<td>Search customer</td>
 						</tr>
+						<?php } ?>
 						<tr>
 							<td><kbd>F9</kbd></td>
 							<td>&nbsp;<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;</td>

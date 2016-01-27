@@ -1315,15 +1315,6 @@ var Cashiering = (function () {
 			});
 		});
 
-		shortcut.add("F3", function () {
-			Alerts.showConfirm("New Transaction", "Are you sure you want to open a new <b>credit</b> transaction?", function (isConfirm) {
-				if(isConfirm) {
-					newTransaction(CONFIG.MODES_OF_PAYMENT.CREDIT);
-					Alerts.showSuccess("New Transaction Opened", "Successfully opened a new credit transaction");
-				}
-			});
-		});
-
 		shortcut.add("F4", function () {
 			if(myModeOfPayment != CONFIG.MODES_OF_PAYMENT.NONE) {
 				toggleSearchPanel();
@@ -1342,17 +1333,28 @@ var Cashiering = (function () {
 			}
 		});
 
-		shortcut.add("F7", function () {
-			if(myModeOfPayment != CONFIG.MODES_OF_PAYMENT.NONE) {
-				newCustomer();
-			}
-		});
+		if(WITH_CUSTOMERS) {
+			shortcut.add("F3", function () {
+				Alerts.showConfirm("New Transaction", "Are you sure you want to open a new <b>credit</b> transaction?", function (isConfirm) {
+					if(isConfirm) {
+						newTransaction(CONFIG.MODES_OF_PAYMENT.CREDIT);
+						Alerts.showSuccess("New Transaction Opened", "Successfully opened a new credit transaction");
+					}
+				});
+			});
+			
+			shortcut.add("F7", function () {
+				if(myModeOfPayment != CONFIG.MODES_OF_PAYMENT.NONE) {
+					newCustomer();
+				}
+			});
 
-		shortcut.add("F8", function () {
-			if(myModeOfPayment != CONFIG.MODES_OF_PAYMENT.NONE) {
-				searchCustomer();
-			}
-		});
+			shortcut.add("F8", function () {
+				if(myModeOfPayment != CONFIG.MODES_OF_PAYMENT.NONE) {
+					searchCustomer();
+				}
+			});
+		}
 
 		shortcut.add("F9", function () {
 			if(myModeOfPayment == CONFIG.MODES_OF_PAYMENT.CASH || myModeOfPayment == CONFIG.MODES_OF_PAYMENT.CREDIT_CARD) {

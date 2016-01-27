@@ -9,16 +9,26 @@ class Login extends CI_Controller {
 	 */
 	private $is_dev = false;
 
+	/**
+	 * [$with_customers description]
+	 * @var boolean
+	 * true = when there are no need for customers to be shown
+	 * false = when there is a need for specific customers for each transaction
+	 */
+	private $with_customers = false;
+
 	public function __construct() {
 		parent::__construct();
 
-		$session_data = $this->session->userdata('samson_auth');
+		$session_data = $this->session->userdata('pos_auth');
 
-		if($this->session->userdata('samson_auth')) {
-			if($session_data['user_level'] == 'Administrator')
+		if($this->session->userdata('pos_auth')) {
+			if($session_data['user_level'] == 'Administrator') {
 				redirect('cashiering', 'refresh');
-			else
+			}
+			else {
 				redirect('cashiering', 'refresh');
+			}
 		}
 
 		$this->load->model('user_model');
@@ -37,11 +47,12 @@ class Login extends CI_Controller {
 		if($this->user_model->is_username_and_password_correct($username, $password)) {
 			$user = $this->user_model->get_user_via_username($username);
 
-			$this->session->set_userdata('samson_auth', array(
+			$this->session->set_userdata('pos_auth', array(
 				'user_id' => $user->id,
 				'name' => $user->first_name . ' ' . $user->last_name,
 				'user_level' => $user->user_level,
-				'path' => ($this->is_dev == false) ? '/../_shared/' : $_SERVER['DOCUMENT_ROOT'] . '/application/views/_shared/'
+				'path' => ($this->is_dev == false) ? '/../_shared/' : $_SERVER['DOCUMENT_ROOT'] . '/application/views/_shared/',
+				'with_customers' => $this->with_customers
 			));
 
 			echo 1;

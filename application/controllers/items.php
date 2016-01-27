@@ -4,9 +4,9 @@ class Items extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-		$session_data = $this->session->userdata('samson_auth');
+		$session_data = $this->session->userdata('pos_auth');
 
-		if($this->session->userdata('samson_auth')) {
+		if($this->session->userdata('pos_auth')) {
 			if($session_data['user_level'] != 'Administrator')
 				redirect('cashiering', 'refresh');
 		}
@@ -20,12 +20,13 @@ class Items extends CI_Controller {
 	}
 
 	public function index() {
-		$session_data = $this->session->userdata('samson_auth');
+		$session_data = $this->session->userdata('pos_auth');
 
 		$data['user_id'] = $session_data['user_id'];
 		$data['name'] = $session_data['name'];
 		$data['user_level'] = $session_data['user_level'];
 		$data['path'] = $session_data['path'];
+		$data['with_customers'] = $session_data['with_customers'];
 		$data['current_page'] = 'items';
 
 		$this->load->view($data['current_page'] . '/index', $data);
