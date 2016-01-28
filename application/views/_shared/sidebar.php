@@ -23,7 +23,9 @@
 	else {
 	?>
 		<li <?php if($current_page == 'cashiering') echo 'class="active"'; ?>><a href="<?php echo base_url() . 'cashiering'; ?>"> Cashiering</a></li>
+		<?php if($with_customers) { ?>
 		<li <?php if($current_page == 'credit_payment') echo 'class="active"'; ?>><a href="<?php echo base_url() . 'credit_payment'; ?>"> Credit Payment</a></li>
+		<?php } ?>
 	<?php
 	}
 	?>
