@@ -15,7 +15,7 @@ class Login extends CI_Controller {
 	 * true = when there are no need for customers to be shown
 	 * false = when there is a need for specific customers for each transaction
 	 */
-	private $with_customers = false;
+	private $with_customers = true;
 
 	public function __construct() {
 		parent::__construct();
